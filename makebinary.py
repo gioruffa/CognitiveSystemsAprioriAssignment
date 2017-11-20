@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import numpy as np
 import pandas as pd
 import sys
@@ -13,6 +14,9 @@ args = parser.parse_args()
 
 for csvdump in args.infiles:
     data = pd.read_csv(csvdump)
+    data = data.sort_values('ReceiptNumber')
+    # print data
+    # sys.exit(1)
     #get the maximum item number
     max_item_number = data.Item.max() + 1
     #get the number of unique transactions
@@ -22,7 +26,7 @@ for csvdump in args.infiles:
 
     data_final = pd.DataFrame(data_final)
 
-    print len(data)
+    # print len(data)
 
     y=0
     for x in range(0,len(data) - 1):
